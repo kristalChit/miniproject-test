@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  <title>List of Recipes</title>
+  <style>
+    body {
+      background-image: url('https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.goodinfonet.com%2Fuploads%2Fnews%2Fgoodinfonet_lets_eat_1614743976_0.jpg&tbnid=rTwjopCYfg9hCM&vet=12ahUKEwj5kpLowLGDAxVQSGwGHQv8AAEQMygUegUIARCEAQ..i&imgrefurl=https%3A%2F%2Fwww.goodinfonet.com%2Fgoodnews%2Flets-eat&docid=hvl7pzfXTU2GxM&w=1080&h=1080&q=lets%20eat%20quote&ved=2ahUKEwj5kpLowLGDAxVQSGwGHQv8AAEQMygUegUIARCEAQ');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid container-xl d-flex align-items-center justify-content-lg-between">
+    <h1>Welcome<span th:text="${username}"></span>!</h1>
+    <ul class="nav">
+      <li><a class="nav-link scrollto active" href="/">Home</a></li>
+      <li><a class="nav-link scrollto" href="/search">Search</a></li>
+      <li><a class="nav-link scrollto" href="/favourites">Favourites</a></li>
+    </ul>
+  </div>
+
+      <div class="container">
+          <h1>Here are your recipes</h1>
+          <h2>Search results</h2>
+          <p>Check Out These Recipes!</p>
+        </div>
+
+        <div th:each="recipe:${recipeList}">
+
+          <form action="#" th:action="@{/recipes/instructions/(id=${recipe.id})}" th:object="${recipe}" method="post">
+            <div class="col-lg-6 menu-item filter-starters">
+              <img th:src="@{${recipe.getImageUrl()}}" class="menu-img" alt="">
+              <div class="menu-content">
+                <a href="#"></a><span th:text="${recipe.getTitle()}"></span>
+                <input type="hidden" name="recipeTitle" th:value="${recipe.title}">
+                <input type="hidden" name="id" th:value="${recipe.id}">
+                <input type="hidden" name="recipeImageUrl" th:value="${recipe.getImageUrl}">
+
+          </form>
+        </div>
+</body>
+
+</html>
